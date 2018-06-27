@@ -56,7 +56,18 @@
                         </li>
 
                         <li>
-                            <a href="/proyectoIaw01/public/evaluacion/create"><i class="fa fa-child fa-fw"></i> Crear Evaluacion<span class="fa arrow"></span></a>
+                            <a href="/proyectoIaw01/public/evaluacion/create"><i class="fa fa-child fa-fw"></i>Evaluaciones<span class="fa arrow"></span></a>
+                            <ul class="sidenav-second-level collapse" id="collapseComponents">
+                                <li>
+                                  <a href="/proyectoIaw01/public/evaluacion/create">Crear Evaluacion</a>
+                                </li>
+                                <li>
+                                  <a href="/proyectoIaw01/public/crearEscalas">Crear Escala de notas</a>
+                                </li>
+                                <li>
+                                  <a href="/proyectoIaw01/public/mostrarEscalas">Mostrar Escalas</a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li>
@@ -65,14 +76,6 @@
 
                          <li>
                             <a href="#"><i class="fa fa-child fa-fw"></i>Publicar Evaluaciones<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#"><i class='fa fa-plus fa-fw'></i> Agregar Escala de notas</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class='fa fa-list-ol fa-fw'></i> Agregar Criterios de Evaluacion</a>
-                                </li>
-                            </ul>
                         </li>
 
                     </ul>
@@ -87,7 +90,7 @@
         </div>
 
     </div>
-    
+        
 
     {!!Html::script('js/jquery.min.js')!!}
     {!!Html::script('js/script.js')!!}

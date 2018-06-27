@@ -3,11 +3,15 @@
 namespace proyectoIaw\Http\Controllers;
 
 use Illuminate\Http\Request;
-use proyectoIaw\Http\Controllers\Controller;
+use proyectoIaw\Evaluador;
 use proyectoIaw\Evaluacion;
+use proyectoIaw\Comision;
 use proyectoIaw\Escala;
-class EvaluacionController extends Controller
+use proyectoIaw\Alumno;
+
+class calificacionController extends Controller
 {
+    public $ComisionID;
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +19,7 @@ class EvaluacionController extends Controller
      */
     public function index()
     {
-        return view('layouts.admin');
+        return 'ok';
     }
 
     /**
@@ -25,9 +29,7 @@ class EvaluacionController extends Controller
      */
     public function create()
     {
-        $escalas = Escala::All();
 
-        return view('evaluacion.create',compact('escalas'));
     }
 
     /**
@@ -37,25 +39,22 @@ class EvaluacionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        
-        $evaluacion = new Evaluacion();
-        $evaluacion->name =$request->input('name');
-        $evaluacion->fecha =$request->input('date');
-        $evaluacion->tipo =$request->input('type');
-        $evaluacion->descripcion =$request->input('desc');
-        $evaluacion->escala= $request->input('esc');
-        $evaluacion->criterios= $request->input('crit');
-        $evaluacion->save();
-      
-        if($request -> ajax())
-        {
-            return response() -> json([
-                "mensaje" => $request->all()
-                ]);
+    {
+
+        info('llego aca?????');
+        $id = $this->getComisionID();
+        $comision = Comision::find($id);
+        $comision->nota = $request->input('nota');
+        $comision->save();
+
+
+        $val=  $request->all();
+        if($request->ajax()){
+            return response()->json([
+                "mensaje"=> $request->all()]);
         }
 
-        return view('layouts.admin');
+        return compact('comision');
     }
 
     /**
@@ -66,7 +65,17 @@ class EvaluacionController extends Controller
      */
     public function show($id)
     {
-        //
+        $comision = Comision::find($id);
+        $this->setComisionID($id);
+        $evaluacion = Evaluacion::find($comision->evaluacion);
+        $evaluador = Evaluador::find($comision->evaluador);
+        $escalas = Escala::find($evaluacion->escala);
+        $arr = json_encode($comision->integrantes);
+        for ($i=0; $i < 2; $i++) { 
+            $alumnos[$i]=Alumno::find($comision->integrantes[$i]);
+        }
+        //(return $arreglo;
+        return view('calificacion.show', compact('comision','evaluacion','escalas','evaluador','alumnos'));
     }
 
     /**
@@ -103,24 +112,13 @@ class EvaluacionController extends Controller
         //
     }
 
+    public function setComisionID($id){
+        $this->ComisionID = $id;
 
-    public function mostrarEscalas()
-    {
-        $escalas = Escala::All();
-        //print_r($escalas);
-        //die();
-        return view('evaluacion.showEscalas',compact('escalas'));   
     }
 
-
-    public function crearEscalas()
-    {
-        //$escalas = Escala::All();
-        //print_r($escalas);
-        //die();
-        return view('evaluacion.crearEscalas');   
+    public function getComisionID(){
+        $id = $this->ComisionID;
+        return compact("id");
     }
-
-  
-
 }

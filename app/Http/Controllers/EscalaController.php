@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use proyectoIaw\Http\Controllers\Controller;
 use proyectoIaw\Evaluacion;
 use proyectoIaw\Escala;
-class EvaluacionController extends Controller
+
+class EscalaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class EvaluacionController extends Controller
      */
     public function index()
     {
-        return view('layouts.admin');
+        //
     }
 
     /**
@@ -25,9 +26,7 @@ class EvaluacionController extends Controller
      */
     public function create()
     {
-        $escalas = Escala::All();
-
-        return view('evaluacion.create',compact('escalas'));
+        //
     }
 
     /**
@@ -37,25 +36,18 @@ class EvaluacionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
+        $escala = new Escala();
+        $escala->cabecera = $request->input('escala_kbcra');
+        $escala->descripcion = $request->input('escala_desc');
+        $escala->concepto = $request->input('escala_concepto');
+        $escala->aprobado = $request->input('escala_aprobado');
+        $escala->save();
         
-        $evaluacion = new Evaluacion();
-        $evaluacion->name =$request->input('name');
-        $evaluacion->fecha =$request->input('date');
-        $evaluacion->tipo =$request->input('type');
-        $evaluacion->descripcion =$request->input('desc');
-        $evaluacion->escala= $request->input('esc');
-        $evaluacion->criterios= $request->input('crit');
-        $evaluacion->save();
-      
-        if($request -> ajax())
-        {
-            return response() -> json([
-                "mensaje" => $request->all()
-                ]);
-        }
+        $escalas = Escala::All();
 
-        return view('layouts.admin');
+
+        return view('evaluacion.showEscalas',compact('escalas'));
     }
 
     /**
@@ -102,25 +94,4 @@ class EvaluacionController extends Controller
     {
         //
     }
-
-
-    public function mostrarEscalas()
-    {
-        $escalas = Escala::All();
-        //print_r($escalas);
-        //die();
-        return view('evaluacion.showEscalas',compact('escalas'));   
-    }
-
-
-    public function crearEscalas()
-    {
-        //$escalas = Escala::All();
-        //print_r($escalas);
-        //die();
-        return view('evaluacion.crearEscalas');   
-    }
-
-  
-
 }

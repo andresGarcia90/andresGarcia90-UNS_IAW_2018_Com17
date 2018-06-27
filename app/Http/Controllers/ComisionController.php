@@ -44,14 +44,42 @@ class ComisionController extends Controller
     public function store(Request $request)
     {
 
-        $evaluador = Evaluador::find($request->dieval); //con esto ya tengo el evaluador
-        $evaluacion = Evaluacion::find($request->diecion);
+        //$evaluador = Evaluador::find($request->dieval); //con esto ya tengo el evaluador
+        //$evaluacion = Evaluacion::find($request->diecion);
+
+        //es mejor guardar la referencia por actualizaciones
+        //
+
+
+        $alumnosstr = explode("-", $request->alumnos);
+
+        $com = new Comision();
+        $com->name = $request->input('dinom');
+        
+        //$com->evaluacion = Evaluacion::find($request->diecion);
+        //$com->evaluador = Evaluador::find($request->dieval);
+
+
+        $com->evaluacion = $request->diecion;
+        $com->evaluador  = $request->dieval;
+
+
+        $com->nota = [];
+
+        $array = array();
+
+        for ($i = 1; $i <= sizeof($alumnosstr) - 1; $i++) 
+        {
+            $array[$i] = Alumno::find($alumnosstr[$i]);
+        }   
+
+        $com->integrantes = $alumnosstr;
+
+        $com->save();
 
         if($request -> ajax()){
             return response() -> json([
-                "mensaje" => $evaluador,
-                "mensaje2" => $evaluacion,
-                "mensaje3" => $request->alumnos
+                "mensaje" => $com
                 ]);
 
         }

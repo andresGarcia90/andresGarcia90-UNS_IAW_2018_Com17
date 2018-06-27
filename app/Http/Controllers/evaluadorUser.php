@@ -3,10 +3,13 @@
 namespace proyectoIaw\Http\Controllers;
 
 use Illuminate\Http\Request;
-use proyectoIaw\Http\Controllers\Controller;
+use proyectoIaw\Evaluador;
 use proyectoIaw\Evaluacion;
-use proyectoIaw\Escala;
-class EvaluacionController extends Controller
+use proyectoIaw\Comision;
+use Carbon\Carbon;
+
+
+class evaluadorUser extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +18,8 @@ class EvaluacionController extends Controller
      */
     public function index()
     {
-        return view('layouts.admin');
+        $evaluadores = Evaluador::all();
+        return view('evaluadorUser.index',compact('evaluadores'));
     }
 
     /**
@@ -25,9 +29,7 @@ class EvaluacionController extends Controller
      */
     public function create()
     {
-        $escalas = Escala::All();
-
-        return view('evaluacion.create',compact('escalas'));
+        //
     }
 
     /**
@@ -37,25 +39,8 @@ class EvaluacionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        
-        $evaluacion = new Evaluacion();
-        $evaluacion->name =$request->input('name');
-        $evaluacion->fecha =$request->input('date');
-        $evaluacion->tipo =$request->input('type');
-        $evaluacion->descripcion =$request->input('desc');
-        $evaluacion->escala= $request->input('esc');
-        $evaluacion->criterios= $request->input('crit');
-        $evaluacion->save();
-      
-        if($request -> ajax())
-        {
-            return response() -> json([
-                "mensaje" => $request->all()
-                ]);
-        }
-
-        return view('layouts.admin');
+    {
+        //
     }
 
     /**
@@ -66,7 +51,29 @@ class EvaluacionController extends Controller
      */
     public function show($id)
     {
-        //
+        $comisiones = Comision::where('evaluador','=',$id)->get();
+        $carbon = new Carbon();
+        $carbon = Carbon::now();
+        //$carbon = $carbon->format('Y-m-d');
+        $carbon2 = new Carbon();
+        $carbon2 = Carbon::now();
+        $c= $carbon2 < $carbon;
+        //return compact('c');
+        
+        foreach ($comisiones as $comision) {
+            $evaluacion = Evaluacion::find($comision->evaluacion);
+            $comision['nombreEvaluacion']= $evaluacion->name;
+            $comision['fecha']= $evaluacion->fecha;
+            $comision['tipo']= $evaluacion->tipo;
+            $c= $evaluacion->fecha > $carbon;
+            $comision['evaluable'] = $c;
+        }
+
+
+
+        //return $comisiones;
+        return view('evaluadorUser.show', compact('comisiones'));
+
     }
 
     /**
@@ -102,25 +109,4 @@ class EvaluacionController extends Controller
     {
         //
     }
-
-
-    public function mostrarEscalas()
-    {
-        $escalas = Escala::All();
-        //print_r($escalas);
-        //die();
-        return view('evaluacion.showEscalas',compact('escalas'));   
-    }
-
-
-    public function crearEscalas()
-    {
-        //$escalas = Escala::All();
-        //print_r($escalas);
-        //die();
-        return view('evaluacion.crearEscalas');   
-    }
-
-  
-
 }
