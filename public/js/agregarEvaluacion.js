@@ -48,7 +48,7 @@ $(document).ready(function(){
 
 		console.log(criterios);
 
-		var route = "http://localhost/proyectoIaw01/public/evaluacion";	
+		var route = "/evaluacion";	
 		var token = $("#token").val();
 
 		$.ajax({

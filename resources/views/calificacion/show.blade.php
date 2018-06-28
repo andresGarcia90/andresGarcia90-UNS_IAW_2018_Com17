@@ -17,7 +17,7 @@
 <div id="msj-success" class="alert alert-success alert-dismissible" role="alert" style="display: none">
             <strong>Clalificación realizada!</strong>
         </div>
-
+<input type="hidden" name="_token" value="{{csrf_token()}}" id="token">
 
           <div class="form-horizontal">
             <h3>Escala de notas:</h3>
@@ -48,19 +48,15 @@
         		<thead>
         			<tr>
                         <th>Alumnos</th>
-                        <th>Evaluación</th>
         			</tr>
 
-{!!Form::open()!!}
                    
                     <input type="hidden" name="_token" value="{{csrf_token()}}" id="token">
 
                         @for ($i = 0; $i < sizeof($alumnos); $i++)
                          <tr>
                             <td>{{$alumnos[$i]->name}}, {{$alumnos[$i]->lastname}} </td>
-                            <td>
-                                {!!Form::select('descripcion', $escalas->descripcion, null, ['id'=>'notaAlumno'.$i,'class'=>'form-control','placeholder' => 'Seleccione descripcion'])!!}
-                            </td>
+                           
                          </tr>
                          @endfor
                         
@@ -68,18 +64,31 @@
 
             </table>
             
+<?php 
+  $arregloNotas = array();
 
+  for ($t=0; $t < sizeof($escalas->descripcion)  ; $t++) { 
+    $arregloNotas[$escalas->descripcion[$t]] =$escalas->descripcion[$t]; 
+  }
+
+?>
+
+<div class="">
+  {!!Form::label("Calificacion_Final", "Ingrese Calificacion" )!!}
+  {!!Form::select('descripcion', $arregloNotas, null, ['id'=>'notaAlumno','class'=>'form-control','placeholder' => 'Seleccione descripcion'])
+  !!}
+      <br>                      
+</div>
                         <!-- Button (Double) -->
             <div class="form-group">
               <label class="col-md-4 control-label" for="submit"></label>
               <div class="col-md-8">
                 {!!link_to('#', $title='Calificacion', $atributos = ['id' => 'registro', 'class' => 'btn btn-primary'], $secure = null)!!}
-                <button id="submit" name="submit" class="btn btn-primary" value="1">Calificar</button>
-                <a href="/proyectoIaw01/public/evaluadorUser/{{$evaluador->_id}}" id="cancel" name="cancel" class="btn btn-default">Cancel</a>
+                <a href="/evaluadorUser/{{$evaluador->_id}}" id="cancel" name="cancel" class="btn btn-default"> Cancelar </a>
               </div>
             </div>
 
-          {!!Form::close()!!}
+          
 
             
 @endsection()

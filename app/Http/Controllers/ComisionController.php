@@ -64,7 +64,7 @@ class ComisionController extends Controller
         $com->evaluador  = $request->dieval;
 
 
-        $com->nota = [];
+        #$com->nota = -1;
 
         $array = array();
 

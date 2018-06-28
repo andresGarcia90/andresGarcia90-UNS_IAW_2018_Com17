@@ -4,12 +4,14 @@ $("#registrocomision").click(function(){
 	var idEvaluacion = $("#comevcion").val();
 	var idNombreCom = $("#comname").val();
 
-	var route = "http://localhost/proyectoIaw01/public/comision";	// "./" para que no se queje 
+	var route = "/comision";	// "./" para que no se queje 
 	var token = $("#token").val();
 
 	var sList = "";
     $('input[type=checkbox]').each(function () {
-    	sList += $(this).attr('name') + "-";
+    	if($(this).prop('checked')){
+    		sList += $(this).attr('name') + "-";
+    	}
 	});
 
 	sList = sList.substr(0, sList.length -1);

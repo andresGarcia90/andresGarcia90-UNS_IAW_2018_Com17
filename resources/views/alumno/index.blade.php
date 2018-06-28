@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://localhost/proyectoIaw01/public/alumnos">Alumno</a>
+                <a class="navbar-brand" href="/alumnos">Alumno</a>
             </div>
            
 
@@ -49,35 +49,30 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="/proyectoIaw01/public/usuario/create"><i class="fa fa-users fa-fw"></i> Agregar Alumno<span class="fa arrow"></span></a>
+                            <a href="/usuario/create"><i class="fa fa-users fa-fw"></i> Agregar Alumno<span class="fa arrow"></span></a>
                         </li>
                         <li>
-                            <a href="/proyectoIaw01/public/evaluador/create"><i class="fa fa-film fa-fw"></i> Agrear Evaluador<span class="fa arrow"></span></a>
+                            <a href="/evaluador/create"><i class="fa fa-film fa-fw"></i> Agrear Evaluador<span class="fa arrow"></span></a>
                         </li>
 
                         <li>
-                            <a href="/proyectoIaw01/public/evaluacion/create"><i class="fa fa-child fa-fw"></i>Evaluaciones<span class="fa arrow"></span></a>
+                            <a href="/evaluacion/create"><i class="fa fa-child fa-fw"></i>Evaluaciones<span class="fa arrow"></span></a>
                             <ul class="sidenav-second-level collapse" id="collapseComponents">
                                 <li>
-                                  <a href="/proyectoIaw01/public/evaluacion/create">Crear Evaluacion</a>
+                                  <a href="/evaluacion/create">Crear Evaluacion</a>
                                 </li>
                                 <li>
-                                  <a href="/proyectoIaw01/public/mostrarEscalas">Mostrar Escalas</a>
+                                  <a href="/mostrarEscalas">Mostrar Escalas</a>
                                 </li>
                                 <li>
-                                  <a href="/proyectoIaw01/public/evaluacion/create">Crear Evaluacion</a>
+                                  <a href="/evaluacion/create">Crear Evaluacion</a>
                                 </li>
                             </ul>
                         </li>
 
                         <li>
-                            <a href="/proyectoIaw01/public/comision"><i class="fa fa-child fa-fw"></i> Crear Comision<span class="fa arrow"></span></a>
+                            <a href="/comision"><i class="fa fa-child fa-fw"></i> Crear Comision<span class="fa arrow"></span></a>
                         </li>
-
-                         <li>
-                            <a href="#"><i class="fa fa-child fa-fw"></i>Publicar Evaluaciones<span class="fa arrow"></span></a>
-                        </li>
-
                     </ul>
                 </div>
             </div>

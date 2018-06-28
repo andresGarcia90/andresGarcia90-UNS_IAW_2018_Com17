@@ -26,12 +26,12 @@
 		        		<td>{{$comision->tipo}}</td>
 		        		<td>
 
-                                                @if($comision->evaluable)
-                                                  <a href="/proyectoIaw01/public/calificacion/{{$comision->_id}}" class="btn btn-danger">Calificar</a>
+                                                @if(!$comision->evaluable)
+                                                  <a href="/calificacion/{{$comision->_id}}" class="btn btn-danger">Calificar</a>
                                                         
                                                 @endif
                                                 <div class="btn-group" role="group" aria-label="...">
-                                                  <a href="/proyectoIaw01/public/evaluador/create" class="btn btn-success">Ver</a>
+                                                  <a href="/evaluador/create" class="btn btn-success">Ver</a>
                                                 </div>
 
                                         </td>

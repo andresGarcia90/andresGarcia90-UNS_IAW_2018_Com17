@@ -5,6 +5,7 @@ namespace proyectoIaw\Http\Controllers;
 use Illuminate\Http\Request;
 use proyectoIaw\Alumno;
 use proyectoIaw\Comision;
+use proyectoIaw\Evaluacion;
 
 class vistaAlumnos extends Controller
 {
@@ -50,29 +51,28 @@ class vistaAlumnos extends Controller
     {
 
         $comisiones= Comision::All();
-        $comisionesToReturn;
+        $comisionesToReturn = array();
         $var = 0;
         foreach ($comisiones as $comision ) {
+           $aux = 0; 
            $aux = $comision->integrantes;
-           //$nota = $comision->notas;
-           //////////////////////////////////////////REEMPLAZAAAR//////////////////////////////////////////
-           $nota = [1,3];
-           //return sizeof($aux);
            for ($i=0; $i < sizeof($aux); $i++) { 
                if(strcmp($id,$aux[$i])==0){
-                $escalaNota=find($comisiones->)
                 $comisionesToReturn[$var]=$comision;
-                $comisionesToReturn[$var]->notas=$nota[$i];
+                $nombreEval=Evaluacion::find($comision->evaluacion);
+                $comisionesToReturn[$var]->nombreEv=$nombreEval->name;
                 $var++;
                }
            }
         }
-        //return compact('comisionesToReturn');
-        $alumno=Alumno::where('lastname','=','Garcia')->get();
+        $alumno=Alumno::find($id);
+        //return $comisionesToReturn;
+        if (sizeof($comisionesToReturn) > 0 ) {
+            return view('alumno.show',compact('comisionesToReturn','alumno'));
+        }else{
+            return view('alumno.noalumno');
+        }
         
-        //return $alumno;
-        //return compact('comisiones');
-        return view('alumno.show',compact('comisiones'));
     }
 
     /**

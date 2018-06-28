@@ -41,12 +41,15 @@ class calificacionController extends Controller
     public function store(Request $request)
     {
 
-        info('llego aca?????');
         $id = $this->getComisionID();
         $comision = Comision::find($id);
-        $comision->nota = $request->input('nota');
-        $comision->save();
-
+        $newComision = new Comision();
+        $evaluacion = Evaluacion::find($comision->evaluacion);
+        $escala = Escala::find($evaluacion->escala);
+        $notaToReturn = $escala->descripcion[$request->nota]; 
+       // $comision->fill(nota->$notaToReturn);
+        $newComision->nota = $notaToReturn;
+        $newComision->save();
 
         $val=  $request->all();
         if($request->ajax()){
@@ -86,7 +89,7 @@ class calificacionController extends Controller
      */
     public function edit($id)
     {
-        //
+      //
     }
 
     /**
@@ -98,7 +101,14 @@ class calificacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
+     
+
+      $com = Comision::find($request->comid);
+      $com-> nota = $id;
+      $com->save();
+     
+       
     }
 
     /**

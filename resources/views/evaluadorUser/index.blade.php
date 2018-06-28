@@ -20,7 +20,7 @@
 		        		<td>{{$evaluador->lastname}}</td>
 		        		<td>{{$evaluador->name}}</td>
 		        		<td>{{$evaluador->email}}</td>
-		        		/*<td><a href="evaluadorUser/{{$evaluador->_id}}" class="btn btn-primary">ingresar</a></td>*/
+		        		<td><a href="evaluadorUser/{{$evaluador->_id}}" class="btn btn-primary">ingresar</a></td>
 		        		
 		        	</tr>
 		        	@endforeach

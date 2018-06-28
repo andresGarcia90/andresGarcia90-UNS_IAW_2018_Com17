@@ -6,7 +6,7 @@ $("#registroalumno").click(function(){
 	var email = $("#alemail").val();
 	var alu = $("#alu").val();
 
-	var route = "http://localhost/proyectoIaw01/public/usuario";	
+	var route = "/usuario";	
 	var token = $("#token").val();
 
 	$.ajax({

@@ -7,7 +7,7 @@ $("#registroevaluador").click(function(){
 	var email = $("#evdoremail").val();
 	var dni = $("#evdordni").val();
 
-	var route = "http://localhost/proyectoIaw01/public/evaluador";	
+	var route = "/evaluador";	
 	var token = $("#token").val();
 
 	$.ajax({

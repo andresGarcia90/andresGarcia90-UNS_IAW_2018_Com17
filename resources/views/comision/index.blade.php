@@ -7,14 +7,14 @@
 	{!!Form::open()!!}
 	
 		<div id="msj-success" class="alert alert-success alert-dismissible" role="alert" style="display:none">
-						<strong> BUENISIMO.</strong>		
+						<strong> Comisión creada con éxito.</strong>		
 		</div>
 		<input type="hidden" name="_token" value=" {{ csrf_token() }}" id = "token">
 		
 		<hr>
 		<label>Ingrese nombre de la comisión</label>
 		<div class="form-group">
-			{!!Form::text('name',null,['id' =>'comname','class'=>'form-control','placeholder'=>'Nombre del usuario'])!!}
+			{!!Form::text('name',null,['id' =>'comname','class'=>'form-control','placeholder'=>'Nombre del comisión'])!!}
 		</div>
 		
 		<hr>

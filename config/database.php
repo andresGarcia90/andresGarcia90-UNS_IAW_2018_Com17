@@ -41,13 +41,14 @@ return [
         'mongodb' => [
             'driver'   => 'mongodb',
             'host'     => env('DB_HOST', 'localhost'),
-            'port'     => 27017,
-            'database' => 'test',
-            'username' => '',
-            'password' => '',
+            'port'     => env('DB_PORT', '27017'),
+            'database' => env('DB_DATABASE', 'test'),
+            'username' => env('DB_USERNAME', ''),
+            'password' => env('DB_PASSWORD', ''),
             'options'  => [
-                'database' => 'admin' // sets the authentication database required by mongo 3
+                'database' => env('DB_DATABASE', 'test') // sets the authentication database required by mongo 3
             ]
+            //mongodb://proyectoiaw:proyectoiaw123@ds217921.mlab.com:17921/proyectoiaw
         ],
         'mysql' => [
             'driver' => 'mysql',

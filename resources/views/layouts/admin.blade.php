@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="http://localhost/proyectoIaw01/public/usuario">Administrador</a>
+                <a class="navbar-brand" href="/usuario">Administrador</a>
             </div>
            
 
@@ -49,34 +49,31 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="/proyectoIaw01/public/usuario/create"><i class="fa fa-users fa-fw"></i> Agregar Alumno<span class="fa arrow"></span></a>
+                            <a href="/usuario/create"><i class="fa fa-users fa-fw"></i> Agregar Alumno<span class="fa arrow"></span></a>
                         </li>
                         <li>
-                            <a href="/proyectoIaw01/public/evaluador/create"><i class="fa fa-film fa-fw"></i> Agrear Evaluador<span class="fa arrow"></span></a>
+                            <a href="/evaluador/create"><i class="fa fa-film fa-fw"></i> Agrear Evaluador<span class="fa arrow"></span></a>
                         </li>
 
                         <li>
-                            <a href="/proyectoIaw01/public/evaluacion/create"><i class="fa fa-child fa-fw"></i>Evaluaciones<span class="fa arrow"></span></a>
+                            <a href="/evaluacion/create"><i class="fa fa-child fa-fw"></i>Evaluaciones<span class="fa arrow"></span></a>
                             <ul class="sidenav-second-level collapse" id="collapseComponents">
                                 <li>
-                                  <a href="/proyectoIaw01/public/evaluacion/create">Crear Evaluacion</a>
+                                  <a href="/evaluacion/create">Crear Evaluacion</a>
                                 </li>
                                 <li>
-                                  <a href="/proyectoIaw01/public/crearEscalas">Crear Escala de notas</a>
+                                  <a href="/crearEscalas">Crear Escala de notas</a>
                                 </li>
                                 <li>
-                                  <a href="/proyectoIaw01/public/mostrarEscalas">Mostrar Escalas</a>
+                                  <a href="/mostrarEscalas">Mostrar Escalas</a>
                                 </li>
                             </ul>
                         </li>
 
                         <li>
-                            <a href="/proyectoIaw01/public/comision"><i class="fa fa-child fa-fw"></i> Crear Comision<span class="fa arrow"></span></a>
+                            <a href="/comision"><i class="fa fa-child fa-fw"></i> Crear Comision<span class="fa arrow"></span></a>
                         </li>
 
-                         <li>
-                            <a href="#"><i class="fa fa-child fa-fw"></i>Publicar Evaluaciones<span class="fa arrow"></span></a>
-                        </li>
 
                     </ul>
                 </div>
@@ -100,6 +97,7 @@
     {!!Html::script('js/bootstrap.min.js')!!}
     {!!Html::script('js/metisMenu.min.js')!!}
     {!!Html::script('js/sb-admin-2.js')!!}
+    {!!Html::script('js/clasificarjs.js')!!}
 
 </body>
 

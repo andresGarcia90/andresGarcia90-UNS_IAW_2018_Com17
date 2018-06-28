@@ -57,7 +57,7 @@ class evaluadorUser extends Controller
         //$carbon = $carbon->format('Y-m-d');
         $carbon2 = new Carbon();
         $carbon2 = Carbon::now();
-        $c= $carbon2 < $carbon;
+        $c= $carbon2 >= $carbon;
         //return compact('c');
         
         foreach ($comisiones as $comision) {
